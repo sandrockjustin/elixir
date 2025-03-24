@@ -1,6 +1,8 @@
 defmodule Types do
 
   def typeof(x) do
+
+    # Essentially, a switch-case from JavaScript but different
     cond do
       is_integer(x) ->
         "integer"
@@ -22,13 +24,38 @@ defmodule Types do
 
   end
 
-  def basic_types do
-    string = "Hello World!"
+  def examples do
+    string = "Hello World!"       # Strings are encoded in UTF-8
+    concat = "Hello" <> "World!"  # Example string concatenation
     float = 27.2
     integer = 10
     boolean = true
-    list = [1, 2, 3]
-    tuple = {1, 2, 3}
+    list = [1, 2, 3]              # Dynamic-length collection (linked-list)
+    tuple = {1, 2, 3}             # Fixed-length collection
+    :world                        # An atom is a constant, whose value is its own name
+
+    IO.puts("String: #{typeof(string)}")
+    IO.puts("Float: #{typeof(float)}")
+    IO.puts("Integer: #{typeof(integer)}")
+    IO.puts("Boolean: #{typeof(boolean)}")
+    IO.puts("List: #{typeof(list)}")
+    IO.puts("Tuple: #{typeof(tuple)}")
+  end
+
+  def match(x, y) do
+    if (typeof(x) == typeof(y)) do
+      true
+    else
+      false
+    end
+  end
+
+  def mismatch(x, y) do
+    if (typeof(x) != typeof(y)) do
+      true
+    else
+      false
+    end
   end
 
 end
