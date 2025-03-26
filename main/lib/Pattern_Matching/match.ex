@@ -15,11 +15,22 @@ defmodule Match do
     IO.inspect(contents)
   end
 
+  # Only activates if first element matches :error atom
+  def responseHandler({:error, errmsg}) do
+    IO.puts(errmsg)
+  end
+
+  # Only activates if first element matches :ok atom
+  def responseHandler({:ok, contents}) do
+    IO.inspect(contents)
+  end
+
+  # Activates with any other tuple
   def responseHandler(tuple) do
     {status, contents} = tuple
     case status do
       :ok -> IO.inspect(contents)
-      _ -> IO.puts("Error")
+      _ -> IO.puts("Unknown status")
     end
   end
 
